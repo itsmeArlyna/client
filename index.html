@@ -19,18 +19,30 @@
           .blinking {
             animation: blink 2s infinite;
           }
+          img{
+            width: 40%;
+          }
+          #logo{
+            width: 33%;
+          }
+          h2{
+            color: rgba(0, 0, 0, 0.784);
+          }
     </style>
   </head>
 
   <body>
     <div class="container pt-5">
         <div class="row mb-5">
-            <div class="col-12 text-center">
-                <img src="img/logo.png" alt="">
+            <div class="col-6 text-center">
+                <img id="logo" src="img/logo.png" alt="">
+            </div>
+            <div class="col-6 text-center">
+                <img src="img/logo1.jpg" alt="">
             </div>
         </div>
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col-12 mb-5 text-center">
                 <h1>UNIVERSITY OF CEBU LAPU-LAPU AND MANDAUE LABS</h1>
             </div>
             <div class="col-12 text-center">
@@ -41,6 +53,11 @@
             <div class="col-12 mt-5 text-center">
                 <a href="id_scan.html">
                     <h3 class="text-primary blinking">Tap to start borrowing process…</h3>
+                </a>
+            </div>
+            <div class="col-12 mt-5 text-center">
+                <a href="id_scan.html">
+                    <button class="btn btn-primary">RETURNING PROCESS</button>
                 </a>
             </div>
         </div>
