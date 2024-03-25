@@ -28,6 +28,12 @@
           h2{
             color: rgba(0, 0, 0, 0.784);
           }
+          .borrow{
+            margin-top: 40%;
+          }
+          .return{
+            margin-top: 50%;
+          }
     </style>
   </head>
 
@@ -50,14 +56,14 @@
             </div>
         </div>
         <div class="row mb-5 mt-5">
-            <div class="col-12 mt-5 text-center">
-                <a href="id_scan.html">
+            <div class="col-12 borrow text-center">
+                <a href="id_scan.php">
                     <h3 class="text-primary blinking">Tap to start borrowing process…</h3>
                 </a>
             </div>
-            <div class="col-12 mt-5 text-center">
-                <a href="id_scan.html">
-                    <button class="btn btn-primary">RETURNING PROCESS</button>
+            <div class="col-12 return text-center">
+                <a href="id_scan_return.php">
+                    <button class="btn btn-warning">RETURNING PROCESS</button>
                 </a>
             </div>
         </div>

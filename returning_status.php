@@ -21,8 +21,7 @@
         .header {
             align-items: center;
             justify-content: center;
-            margin-top: 10%;
-            margin-bottom: 50%;
+            margin-top: 5%;
         }
 
         #logo {
@@ -37,69 +36,123 @@
 </head>
 
 <body>
+
     <div class="container pt-5 mb-5">
-        <div class="row header mb-5">
+    <div class="row header mb-5">
             <div class="col-2 text-center">
                 <img id="logo" src="img/logo1.jpg" alt="">
             </div>
             <div class="col-8 text-center">
-                <h1>UNIVERSITY OF CEBU LAPU-LAPU AND MANDAUE LABS</h1>
+                <h4>UNIVERSITY OF CEBU LAPU-LAPU AND MANDAUE <br> LABS</h4>
             </div>
             <div class="col-2">
                 <img src="img/logo.png" alt="">
             </div>
         </div>
-        <div class="row mt-5">
-    <div class="col-12">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>LAB EQUIPMENT</th>
-                    <th>CONDITION AND STATUS OF APPARATUS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Microscope</td>
-                    <td>
-                        <select class="form-select">
-                            <option value="" disabled selected>Select Condition</option>
-                            <option value="good">Good</option>
-                            <option value="damaged">Damaged</option>
-                        </select>
-                    </td>
-                </tr>
-                <!-- Add more rows as needed -->
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="row mb-5 ">
-      <div class="col-md-6">
-        <label for="datetimeInput" class="form-label">Current Date and Time:</label>
-        <input type="text" class="form-control" id="datetimeInput" readonly>
-      </div>
-    </div>
-    <div class="row">
-        <div class="col-12 text-center">
-            <button class="btn btn-primary">CONFIRM</button>
-        </div>
-    </div>
+        
+        <?php
+        if (isset ($_GET['user_id_input'])) {
+            $userId = $_GET['user_id_input'];
+
+            include_once("connection.php");
+
+            $sql = "SELECT * FROM borrowings WHERE user_id = ?";
+            $stmt = $db->prepare($sql);
+            $stmt->bind_param("s", $userId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                echo '
+                    <div class="container pt-5 mb-5">
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <form method="post" action="returning_items.php" id="return">
+                                    <input type="hidden" name="user_id" value="' . $userId . '">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>LAB EQUIPMENT</th>
+                                                <th>CONDITION AND STATUS OF APPARATUS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>';
+                                        while ($row = $result->fetch_assoc()) {
+                                            // Check if the column is not empty
+                                            if (!empty($row['apparatus1'])) {
+                                                echo '<tr>';
+                                                echo '<td>' . $row['apparatus1'] . '</td>';
+                                                echo '<td>
+                                                        <select name="conditions[]" class="form-select">
+                                                            <option value="" disabled selected>Select Condition</option>
+                                                            <option value="good">Good</option>
+                                                            <option value="damaged">Damaged</option>
+                                                        </select>
+                                                      </td>';
+                                                echo '</tr>';
+                                            }
+                                            if (!empty($row['apparatus2'])) {
+                                                echo '<tr>';
+                                                echo '<td>' . $row['apparatus2'] . '</td>';
+                                                echo '<td>
+                                                        <select name="conditions[]" class="form-select">
+                                                            <option value="" disabled selected>Select Condition</option>
+                                                            <option value="good">Good</option>
+                                                            <option value="damaged">Damaged</option>
+                                                        </select>
+                                                      </td>';
+                                                echo '</tr>';
+                                            }
+                                            if (!empty($row['apparatus3'])) {
+                                                echo '<tr>';
+                                                echo '<td>' . $row['apparatus3'] . '</td>';
+                                                echo '<td>
+                                                        <select name="conditions[]" class="form-select">
+                                                            <option value="" disabled selected>Select Condition</option>
+                                                            <option value="good">Good</option>
+                                                            <option value="damaged">Damaged</option>
+                                                        </select>
+                                                      </td>';
+                                                echo '</tr>';
+                                            }
+                                        }
+                                        echo '</tbody>
+                                    </table>
+                                    <div class="row mb-5 ">
+                                        <div class="col-md-6">
+                                            <label for="datetimeInput" class="form-label">Current Date and Time:</label>
+                                            <input type="text" class="form-control" id="datetimeInput" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <button type="submit" class="btn btn-primary">CONFIRM</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>';
+            } else {
+                echo "<p>No equipment borrowed by this user.</p>";
+            }
+            $stmt->close();
+            $db->close();
+        } else {
+            echo "<h2>User ID not found</h2>";
+        }
+        ?>
     </div>
     <script>
-    // Get the input field
     var datetimeInput = document.getElementById("datetimeInput");
 
-    // Get the current date and time
     var currentDateTime = new Date();
 
-    // Format the date and time to a string
     var formattedDateTime = currentDateTime.toLocaleString();
 
-    // Set the value of the input field to the formatted date and time
     datetimeInput.value = formattedDateTime;
+
   </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
 </body>

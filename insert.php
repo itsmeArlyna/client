@@ -5,7 +5,6 @@ if ($db->connect_error){
     die("Connection failed: " . $db->connect_error);
 }
 
-// Gather form data
 $equipmentName = $_POST['equipment-name'];
 $groupNumber = $_POST['group-number'];
 $department = $_POST['departments'];
@@ -15,7 +14,6 @@ $dateReturn = $_POST['date-return'];
 $phoneNumber = $_POST['phone-number'];
 $email = $_POST['email'];
 
-// SQL injection prevention
 $equipmentName = mysqli_real_escape_string($db, $equipmentName);
 $groupNumber = mysqli_real_escape_string($db, $groupNumber);
 $department = mysqli_real_escape_string($db, $department);
@@ -25,7 +23,6 @@ $dateReturn = mysqli_real_escape_string($db, $dateReturn);
 $phoneNumber = mysqli_real_escape_string($db, $phoneNumber);
 $email = mysqli_real_escape_string($db, $email);
 
-// SQL query to insert data into database
 $sql = "INSERT INTO equipment_borrowed (equipment_name, group_number, department, class_section, date_borrowed, date_return, phone_number, email)
 VALUES ('$equipmentName', '$groupNumber', '$department', '$classSection', '$dateBorrowed', '$dateReturn', '$phoneNumber', '$email')";
 

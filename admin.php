@@ -78,7 +78,7 @@
                     while ($row = mysqli_fetch_assoc($result)){
                         ?>
                     <div class="col-3 mb-3 folder text-center">
-                    <button class="equipment-button" data-equipment-id="<?php echo $row['equipment_id']; ?>" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                    <button data-bs-toggle="modal" data-bs-target="#borrowingModal" class="equipment-button" data-equipment-id="<?php echo $row['equipment_name']; ?>" type="button"   >
                             <img src="img/folder.png" alt="">
                             <h6><?php echo $row['equipment_name']; ?></h6>
                         </button>
@@ -93,7 +93,7 @@
                 </div>
             </div>
                 <div class="second-group" id="second" >
-                    <div class="row folder-group mt-5">
+                    <div class="row folder-group">
                         <?php 
                         include_once('connection.php');
 
@@ -103,7 +103,7 @@
                             while ($row = mysqli_fetch_assoc($result)){
                                 ?>
                                 <div class="col-3 mb-3 folder text-center">
-                                <button class="equipment-button" data-equipment-id="<?php echo $row['equipment_id']; ?>" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button data-bs-toggle="modal" data-bs-target="#borrowingModal" class="equipment-button" data-equipment-id="<?php echo $row['equipment_name']; ?>" type="button"  >
                                     <img src="img/folder.png" alt="">
                                     <h6><?php echo $row['equipment_name']; ?></h6>
                                 </button>
@@ -120,88 +120,107 @@
         
     </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="borrowingModal" tabindex="-1" aria-labelledby="borrowingModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Borrowed Equipment Table</h5>
+        <h5 class="modal-title" id="borrowingModalLabel">Borrowing Information</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">NAME OF STUDENT</th>
-                <th scope="col">GRADE LEVEL</th>
-                <th scope="col">CLASS SECTION</th>
-                <th scope="col">EQUIPMENT APPARATUS</th>
-                <th scope="col">STATUS</th>
-                <th scope="col">DATE OF BORROWING</th>
-                <th scope="col">DATE OF RETURN</th>
-                <th scope="col">ACTIVE PHONE NUMBER</th>
-                <th scope="col">EMAIL</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>John Doe</td>
-                <td>10</td>
-                <td>A</td>
-                <td>Microscope</td>
-                <td>Borrowed</td>
-                <td>2024-03-24</td>
-                <td>2024-04-01</td>
-                <td>123-456-7890</td>
-                <td>johndoe@example.com</td>
-              </tr>
-              <!-- Add more rows as needed -->
-            </tbody>
-          </table>
+      <div class="modal-body">
+        <div id="borrowing-info-container">
         </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
-
-
 </div>
-    <script>
-       
-        document.addEventListener("DOMContentLoaded", function() {
-        const equipmentButtons = document.querySelectorAll(".equipment-button");
-
-        equipmentButtons.forEach(button => {
-            button.addEventListener("click", function() {
-                const equipmentId = this.getAttribute("data-equipment-id");
-                const equipmentName = this.querySelector("h6").textContent;
-                const modalTitle = document.getElementById("exampleModalLabel");
-                const equipmentNameInput = document.getElementById("equipment-name");
-
-                equipmentNameInput.value = equipmentName;
-
-                // Additional actions you may want to perform when a button is clicked
-
-                // You can also open the modal programmatically if needed
-                // const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-                // modal.show();
-            });
-        });
-    });
+<script>
     function updateDateTime() {
-  var currentDate = new Date();
-  var dateString = currentDate.toDateString();
-  var timeString = currentDate.toLocaleTimeString();
-  var currentDateTimeString = dateString + ' ' + timeString;
-  document.getElementById('currentDateTime').innerText = currentDateTimeString;
+        var currentDate = new Date();
+        var dateString = currentDate.toDateString();
+        var timeString = currentDate.toLocaleTimeString();
+        var currentDateTimeString = dateString + ' ' + timeString;
+        document.getElementById('currentDateTime').innerText = currentDateTimeString;
+    }
+
+    setInterval(updateDateTime, 1000);
+
+var equipmentButtons = document.querySelectorAll('.equipment-button');
+equipmentButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        var equipmentId = button.getAttribute('data-equipment-id');
+        console.log("Equipment ID:", equipmentId);
+        fetchBorrowingInformation(equipmentId);
+    });
+});
+
+function fetchBorrowingInformation(equipmentId) {
+    fetch('insert_borrowing.php?equipment_name=' + equipmentId)
+        .then(response => response.json())
+        .then(data => {
+            console.log("Borrowing information:", data);
+            displayBorrowingInformation(data);
+        })
+        .catch(error => console.error('Error fetching borrowing information:', error));
 }
 
-// Update the date and time every second
-setInterval(updateDateTime, 1000);
-       
+function displayBorrowingInformation(data) {
+    var borrowingInfoContainer = document.getElementById('borrowing-info-container');
+    borrowingInfoContainer.innerHTML = ''; 
 
-    </script>
+    var table = document.createElement('table');
+    table.classList.add('table'); 
+
+    var headerRow = table.insertRow();
+    var headers = ['Name of Student', 'Grade Level', 'Class Section', 'Equipment Apparatus', 'Status', 'Date of Borrowing', 'Date of Return', 'Active Phone Number', 'Email'];
+
+    headers.forEach(function(headerText) {
+        var headerCell = document.createElement('th');
+        headerCell.textContent = headerText;
+        headerRow.appendChild(headerCell);
+    });
+
+    data.forEach(function(borrowing) {
+        var row = table.insertRow();
+
+        var nameCell = row.insertCell();
+        nameCell.textContent = borrowing.name;
+
+        var gradeCell = row.insertCell();
+        gradeCell.textContent = borrowing.department; 
+
+        var classCell = row.insertCell();
+        classCell.textContent = borrowing.class_section;
+
+        var equipmentCell = row.insertCell();
+        equipmentCell.textContent = borrowing.equipment_name;
+
+        var statusCell = row.insertCell();
+        statusCell.textContent = borrowing.borrowing_status; 
+
+        var borrowDateCell = row.insertCell();
+        borrowDateCell.textContent = borrowing.date_borrowed;
+
+        var returnDateCell = row.insertCell();
+        returnDateCell.textContent = borrowing.date_return;
+
+        var phoneCell = row.insertCell();
+        phoneCell.textContent = borrowing.user_id; 
+
+        var emailCell = row.insertCell();
+        emailCell.textContent = borrowing.email; 
+    });
+
+    borrowingInfoContainer.appendChild(table);
+}
+
+
+
+
+    
+</script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

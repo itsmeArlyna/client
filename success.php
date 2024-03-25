@@ -21,7 +21,7 @@
         .header {
             align-items: center;
             justify-content: center;
-            margin-top: 10%;
+            margin-top: 5%;
             margin-bottom: 50%;
         }
 
@@ -37,8 +37,9 @@
 </head>
 
 <body>
+    
     <div class="container pt-5 mb-5">
-        <div class="row header mb-5">
+        <div class="row header">
             <div class="col-2 text-center">
                 <img id="logo" src="img/logo1.jpg" alt="">
             </div>
@@ -51,8 +52,16 @@
         </div>
         <div class="row">
             <div class="col-12 text-center">
-                <h3>HELLO,</h3>
-                <h4>YOUR RETURN OF APPARATUS WAS SUCCESSFULLY RECORDED.</h4>
+            <?php
+        if (isset ($_GET['user_name'])) {
+            $userName = $_GET['user_name'];
+       
+            echo "<h2 class='mb-5'>Hello $userName!</h2>";
+            } else {
+                echo "<h2>User name not found</h2>";
+            }
+            ?>
+                <h4 class="text-success mb-3">YOUR RETURN OF APPARATUS WAS SUCCESSFULLY RECORDED.</h4>
                 <br>
                 <h4>THANK YOU AND HAVE A GREAT DAY!</h4>
             </div>

@@ -60,7 +60,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-4 ">
-                <form action="">
+                <form action="insert_borrowings.php" method="post">
                 <input type="text" class="mb-3 form-control" id="input1" placeholder="Apparatus 1" autofocus>
                 <input type="text" class="mb-3 form-control" id="input1" placeholder="Apparatus 2">
                 <input type="text" class="mb-3 form-control" id="input1" placeholder="Apparatus 3">
