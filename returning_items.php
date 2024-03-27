@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $userId = $_POST['user_id'];
         $conditions = $_POST['conditions'];
 
-        $getUserQuery = "SELECT user_name FROM borrowings WHERE user_id = ?";
+        $getUserQuery = "SELECT equipment_name FROM borrowings WHERE user_id = ?";
         $getUserStmt = $db->prepare($getUserQuery);
         
         if (!$getUserStmt) {
@@ -25,16 +25,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $getUserStmt->close();
 
-        $stmt = $db->prepare("INSERT INTO returned_items (user_id, apparatus_name, condition_status) VALUES (?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO returned_items (user_id, equipment_name, condition_status) VALUES (?, ?, ?)");
 
         if (!$stmt) {
             die("Error in preparing statement: " . $db->error);
         }
 
-        $stmt->bind_param("iss", $userId, $apparatusName, $conditionStatus);
+        $stmt->bind_param("iss", $userId, $equipmentId, $conditionStatus);
 
         foreach ($conditions as $condition) {
-            $apparatusName = "";
+            $equipmentId = "";
             $conditionStatus = $condition;
 
             if (!$stmt->execute()) {

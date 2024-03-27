@@ -56,6 +56,11 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         
+        // Send '1' to serial monitor or COM port 4
+        $serialPort = fopen("COM3", "w");
+        fwrite($serialPort, "0");
+        fclose($serialPort);
+        
         http_response_code(200);
 
         $stmt->close();

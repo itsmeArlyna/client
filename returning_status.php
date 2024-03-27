@@ -79,33 +79,9 @@
                                         <tbody>';
                                         while ($row = $result->fetch_assoc()) {
                                             // Check if the column is not empty
-                                            if (!empty($row['apparatus1'])) {
+                                            if (!empty($row['equipment_name'])) {
                                                 echo '<tr>';
-                                                echo '<td>' . $row['apparatus1'] . '</td>';
-                                                echo '<td>
-                                                        <select name="conditions[]" class="form-select">
-                                                            <option value="" disabled selected>Select Condition</option>
-                                                            <option value="good">Good</option>
-                                                            <option value="damaged">Damaged</option>
-                                                        </select>
-                                                      </td>';
-                                                echo '</tr>';
-                                            }
-                                            if (!empty($row['apparatus2'])) {
-                                                echo '<tr>';
-                                                echo '<td>' . $row['apparatus2'] . '</td>';
-                                                echo '<td>
-                                                        <select name="conditions[]" class="form-select">
-                                                            <option value="" disabled selected>Select Condition</option>
-                                                            <option value="good">Good</option>
-                                                            <option value="damaged">Damaged</option>
-                                                        </select>
-                                                      </td>';
-                                                echo '</tr>';
-                                            }
-                                            if (!empty($row['apparatus3'])) {
-                                                echo '<tr>';
-                                                echo '<td>' . $row['apparatus3'] . '</td>';
+                                                echo '<td>' . $row['equipment_name'] . '</td>';
                                                 echo '<td>
                                                         <select name="conditions[]" class="form-select">
                                                             <option value="" disabled selected>Select Condition</option>
