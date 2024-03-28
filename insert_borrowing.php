@@ -46,7 +46,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dateReturn = $dateReturnYear . '-' . $dateReturnMonth . '-' . $dateReturnDay . ' ' . $time;
 
     try {
-        $stmt = $db->prepare("INSERT INTO borrowings (user_id, equipment_name, name, group_number, department, class_section, date_borrowed, date_return) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO borrowings (user_id, equipment_name, name, group_number, department, class_section, date_borrowed, date_return, borrowing_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'unreturned')");
         
         $stmt->bind_param("ssssssss", $userId, $equipmentId, $userName, $groupNumber, $department, $classSection, $dateBorrowed, $dateReturn);
         
@@ -56,15 +56,10 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         
-        // Send '1' to serial monitor or COM port 4
-        $serialPort = fopen("COM3", "w");
-        fwrite($serialPort, "0");
-        fclose($serialPort);
-        
         http_response_code(200);
-
+    
         $stmt->close();
-
+    
     } catch (Exception $e) {
         http_response_code(500);
         echo json_encode(array("error" => "Error: " . $e->getMessage()));

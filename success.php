@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laboratory Equipment</title>
+    <title>Returned</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -64,6 +64,13 @@
                 <h4 class="text-success mb-3">YOUR RETURN OF APPARATUS WAS SUCCESSFULLY RECORDED.</h4>
                 <br>
                 <h4>THANK YOU AND HAVE A GREAT DAY!</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 justify-content-center text-center mt-5">
+               <a href="index.php">
+               <button class="btn btn-primary">Confirm</button>
+               </a>
             </div>
         </div>
     </div>

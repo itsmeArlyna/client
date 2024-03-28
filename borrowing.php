@@ -36,10 +36,22 @@
         #prev-step-1 {
             margin-right: 1%;
         }
+        a{
+        color: black;
+        text-decoration: none;
+      }
     </style>
 </head>
-
 <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 mt-2">
+                <a href="index.php">
+                    <img src="img/home.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
     <div class="container pt-5 mb-5">
         <div class="row header mb-5">
             <div class="col-2 text-center">
@@ -81,10 +93,10 @@
                                             <label for="departments" class="col-form-label">Grade Level:</label>
                                             <select class="form-select" id="departments" name="departments">
                                                 <option value="">Select department</option>
-                                                <option value="elementary">Elementary Department</option>
-                                                <option value="junior_high">Junior High School Department</option>
-                                                <option value="senior_high">Senior High School Department</option>
-                                                <option value="college">College Department</option>
+                                                <option value="Elementary">Elementary Department</option>
+                                                <option value="Junior High School">Junior High School Department</option>
+                                                <option value="Senior High">Senior High School Department</option>
+                                                <option value="College">College Department</option>
                                             </select>
                                         </div>
                                         <div class="col-4">

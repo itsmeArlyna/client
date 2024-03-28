@@ -205,11 +205,11 @@ function displayBorrowingInformation(data) {
         var returnDateCell = row.insertCell();
         returnDateCell.textContent = borrowing.date_return;
 
-        var phoneCell = row.insertCell();
-        phoneCell.textContent = borrowing.user_id; 
+        // var phoneCell = row.insertCell();
+        // phoneCell.textContent = borrowing.user_id; 
 
-        var emailCell = row.insertCell();
-        emailCell.textContent = borrowing.email; 
+        // var emailCell = row.insertCell();
+        // emailCell.textContent = borrowing.email; 
     });
 
     borrowingInfoContainer.appendChild(table);
