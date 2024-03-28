@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2024 at 01:46 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Generation Time: Mar 28, 2024 at 03:13 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,23 +37,22 @@ CREATE TABLE `borrowings` (
   `class_section` varchar(50) DEFAULT NULL,
   `date_borrowed` date NOT NULL,
   `date_return` datetime NOT NULL,
-  `borrowing_status` varchar(20) NOT NULL
+  `borrowing_status` varchar(20) NOT NULL,
+  `condition_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `borrowings`
 --
 
-INSERT INTO `borrowings` (`id`, `equipment_name`, `user_id`, `name`, `group_number`, `department`, `class_section`, `date_borrowed`, `date_return`, `borrowing_status`) VALUES
-(1, '0', 413087539, 'Arlyn Seno', '1', 'elementary', '1A', '2024-03-25', '2024-04-10 20:24:00', ''),
-(2, '0', 413087539, 'Arlyn Seno', '1', 'elementary', '1A', '2024-03-25', '2024-04-10 20:24:00', ''),
-(3, '0', 413087539, 'Arlyn Seno', '1', 'elementary', '1A', '2024-03-25', '2024-04-10 20:24:00', ''),
-(4, 'Beaker', 413087539, 'Jenny Abellera', '1', 'college', '1A', '2024-03-25', '2024-12-18 20:27:00', ''),
-(5, 'Bunsen Burner', 413087539, 'Jenny Abellera', '1', 'college', '1A', '2024-03-25', '2024-12-18 20:27:00', ''),
-(6, 'Erlenmeyer Flask', 413087539, 'Jenny Abellera', '1', 'college', '1A', '2024-03-25', '2024-12-18 20:27:00', ''),
-(7, 'Microscope', 413087539, 'Angela Nalda', '1', 'senior_high', 'A', '2024-03-26', '2025-02-04 23:45:00', ''),
-(8, 'Beakers', 413087539, 'Angela Nalda', '1', 'senior_high', 'A', '2024-03-26', '2025-02-04 23:45:00', ''),
-(9, 'Funnels', 413087539, 'Angela Nalda', '1', 'senior_high', 'A', '2024-03-26', '2025-02-04 23:45:00', '');
+INSERT INTO `borrowings` (`id`, `equipment_name`, `user_id`, `name`, `group_number`, `department`, `class_section`, `date_borrowed`, `date_return`, `borrowing_status`, `condition_status`) VALUES
+(1, 'Beaker', 413087539, 'Jenny Abellera', '1', 'elementary', 'a', '2024-03-28', '2024-03-28 21:31:53', 'returned', 'damaged'),
+(2, 'Magnet', 413087539, 'Jenny Abellera', '1', 'elementary', 'a', '2024-03-28', '2024-03-28 21:31:53', 'returned', 'damaged'),
+(3, 'Funnels', 413087539, 'Jenny Abellera', '1', 'elementary', 'a', '2024-03-28', '2024-03-28 21:31:53', 'returned', 'damaged'),
+(4, 'Beaker', 1234567890, 'Angela L Nalda', '1', 'College', '4B', '2024-03-28', '2024-03-28 21:47:50', 'returned', 'Good'),
+(5, 'Beakers', 12345, 'Arvie Christian Armenta', '2', 'College', '4B', '2024-03-28', '2024-03-28 21:51:47', 'returned', 'Damaged'),
+(6, 'Erlenmeyer Flask', 12345, 'Arvie Christian Armenta', '2', 'College', '4B', '2024-03-28', '2024-03-28 21:51:47', 'returned', 'Damaged'),
+(7, 'Funnels', 12345, 'Arvie Christian Armenta', '2', 'College', '4B', '2024-03-28', '2024-03-28 21:51:47', 'returned', 'Damaged');
 
 -- --------------------------------------------------------
 
@@ -99,7 +98,7 @@ INSERT INTO `laboratory_materials` (`id`, `equipment_id`, `equipment_name`, `equ
 CREATE TABLE `returned_items` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `apparatus_name` varchar(255) NOT NULL,
+  `equipment_name` varchar(255) NOT NULL,
   `condition_status` enum('good','damaged') NOT NULL,
   `date_time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -134,7 +133,7 @@ ALTER TABLE `returned_items`
 -- AUTO_INCREMENT for table `borrowings`
 --
 ALTER TABLE `borrowings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `laboratory_materials`
