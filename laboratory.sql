@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2024 at 06:08 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Generation Time: Mar 28, 2024 at 03:13 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,8 +33,6 @@ CREATE TABLE `borrowings` (
   `user_id` int(20) NOT NULL,
   `name` varchar(100) NOT NULL,
   `group_number` varchar(50) DEFAULT NULL,
-  `mobile_number` int(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
   `department` varchar(50) DEFAULT NULL,
   `class_section` varchar(50) DEFAULT NULL,
   `date_borrowed` date NOT NULL,
@@ -42,6 +40,19 @@ CREATE TABLE `borrowings` (
   `borrowing_status` varchar(20) NOT NULL,
   `condition_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `borrowings`
+--
+
+INSERT INTO `borrowings` (`id`, `equipment_name`, `user_id`, `name`, `group_number`, `department`, `class_section`, `date_borrowed`, `date_return`, `borrowing_status`, `condition_status`) VALUES
+(1, 'Beaker', 413087539, 'Jenny Abellera', '1', 'elementary', 'a', '2024-03-28', '2024-03-28 21:31:53', 'returned', 'damaged'),
+(2, 'Magnet', 413087539, 'Jenny Abellera', '1', 'elementary', 'a', '2024-03-28', '2024-03-28 21:31:53', 'returned', 'damaged'),
+(3, 'Funnels', 413087539, 'Jenny Abellera', '1', 'elementary', 'a', '2024-03-28', '2024-03-28 21:31:53', 'returned', 'damaged'),
+(4, 'Beaker', 1234567890, 'Angela L Nalda', '1', 'College', '4B', '2024-03-28', '2024-03-28 21:47:50', 'returned', 'Good'),
+(5, 'Beakers', 12345, 'Arvie Christian Armenta', '2', 'College', '4B', '2024-03-28', '2024-03-28 21:51:47', 'returned', 'Damaged'),
+(6, 'Erlenmeyer Flask', 12345, 'Arvie Christian Armenta', '2', 'College', '4B', '2024-03-28', '2024-03-28 21:51:47', 'returned', 'Damaged'),
+(7, 'Funnels', 12345, 'Arvie Christian Armenta', '2', 'College', '4B', '2024-03-28', '2024-03-28 21:51:47', 'returned', 'Damaged');
 
 -- --------------------------------------------------------
 
@@ -122,7 +133,7 @@ ALTER TABLE `returned_items`
 -- AUTO_INCREMENT for table `borrowings`
 --
 ALTER TABLE `borrowings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `laboratory_materials`

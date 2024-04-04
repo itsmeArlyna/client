@@ -58,11 +58,21 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         
+        // Send '1' to COM3 if insertion is successful
+        $comPort = fopen("COM3", "w");
+        fwrite($comPort, "1");
+        fclose($comPort);
+        
         http_response_code(200);
     
         $stmt->close();
     
     } catch (Exception $e) {
+        // Send '0' to COM3 if there's an error
+        $comPort = fopen("COM3", "w");
+        fwrite($comPort, "0");
+        fclose($comPort);
+        
         http_response_code(500);
         echo json_encode(array("error" => "Error: " . $e->getMessage()));
     }

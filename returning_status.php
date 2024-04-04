@@ -73,9 +73,9 @@
                                     </tbody>
                                 </table>
                                 <div class="row mb-5">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6" style="opacity:0;">
                                         <label for="datetimeInput" class="form-label">Current Date and Time:</label>
-                                        <input style="opacity:0;" type="text" class="form-control" id="datetimeInput" name="return_datetime" readonly>
+                                        <input style="opacity:1;" type="text" class="form-control" id="datetimeInput" name="return_datetime" readonly>
                                     </div>
                                 </div>
                                 <div class="row">
