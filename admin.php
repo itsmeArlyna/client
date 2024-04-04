@@ -121,7 +121,7 @@
     </div>
 </div>
 <div class="modal fade" id="borrowingModal" tabindex="-1" aria-labelledby="borrowingModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog" style="max-width: 90%; max-height: 90%;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="borrowingModalLabel">Borrowing Information</h5>
@@ -129,11 +129,13 @@
       </div>
       <div class="modal-body">
         <div id="borrowing-info-container">
+          <!-- Content goes here -->
         </div>
       </div>
     </div>
   </div>
 </div>
+
 </div>
 <script>
     function updateDateTime() {
@@ -173,7 +175,7 @@ function displayBorrowingInformation(data) {
     table.classList.add('table'); 
 
     var headerRow = table.insertRow();
-    var headers = ['Name of Student', 'Grade Level', 'Class Section', 'Equipment Apparatus', 'Status', 'Date of Borrowing', 'Date of Return', 'Active Phone Number', 'Email'];
+    var headers = ['Name of Student', 'Grade Level', 'Class Section', 'Equipment Apparatus', 'Status', 'Date of Borrowing', 'Date of Return', 'Condition', 'Email', 'Mobile Number'];
 
     headers.forEach(function(headerText) {
         var headerCell = document.createElement('th');
@@ -205,11 +207,14 @@ function displayBorrowingInformation(data) {
         var returnDateCell = row.insertCell();
         returnDateCell.textContent = borrowing.date_return;
 
-        // var phoneCell = row.insertCell();
-        // phoneCell.textContent = borrowing.user_id; 
+        var phoneCell = row.insertCell();
+        phoneCell.textContent = borrowing.condition_status; 
 
-        // var emailCell = row.insertCell();
-        // emailCell.textContent = borrowing.email; 
+        var emailCell = row.insertCell();
+        emailCell.textContent = borrowing.email; 
+
+        var numCell = row.insertCell();
+        numCell.textContent = borrowing.mobile_number; 
     });
 
     borrowingInfoContainer.appendChild(table);

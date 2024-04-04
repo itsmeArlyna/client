@@ -107,6 +107,20 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="group-number" class="col-form-label">Mobile number:</label>
+                                            <input type="number" class="form-control" id="group-number"
+                                                name="mobile-number" placeholder="Enter your mobile number">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="class-section" class="col-form-label">Email address:</label>
+                                            <input type="email" class="form-control" id="class-section"
+                                                name="email" placeholder="Enter your email address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-6">
                                     <label for="date-borrowed" class="form-label">Date Borrowed:</label>
                                     <input type="date" class="form-control" id="date-borrowed" name="date-borrowed" readonly>
                                 </div>
