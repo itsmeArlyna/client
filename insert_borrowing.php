@@ -2,9 +2,12 @@
 include_once("connection.php");
 
 function fetchBorrowingInformation($equipmentId, $db) {
-    $query = "SELECT * FROM borrowings WHERE equipment_name = ?";
+    $query = "SELECT * FROM borrowings WHERE equipment_name LIKE ?";
     
     $stmt = $db->prepare($query);
+    
+    // Adding wildcards to match equipment names that contain the same word
+    $equipmentId = '%' . $equipmentId . '%';
     
     $stmt->bind_param("s", $equipmentId);
     
@@ -22,6 +25,7 @@ function fetchBorrowingInformation($equipmentId, $db) {
     
     return $borrowingInfo;
 }
+
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["equipment_name"])) {
     $equipmentId = $_GET["equipment_name"];

@@ -36,12 +36,14 @@
         #prev-step-1 {
             margin-right: 1%;
         }
-        a{
-        color: black;
-        text-decoration: none;
-      }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
     </style>
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -65,7 +67,7 @@
             </div>
         </div>
         <?php
-        if (isset ($_GET['user_id_input'])) {
+        if (isset($_GET['user_id_input'])) {
             $userId = $_GET['user_id_input'];
         } else {
             echo "<h2>User ID not found</h2>";
@@ -75,26 +77,28 @@
             <div class="col-12">
                 <div class="card p-5">
                     <form action="insert_borrowing.php" method="POST" id="myForm">
-                        <input type="hidden" value="<?php echo $userId ?>" name="user_id_input" > 
+                        <input type="hidden" value="<?php echo $userId ?>" name="user_id_input">
                         <div class="step" id="step-1">
                             <div class="first">
                                 <div class="mb-3">
                                     <label for="equipment-name" class="col-form-label">Name:</label>
-                                    <input type="text" class="form-control" id="equipment-name" name="name" placeholder="Enter your name">
+                                    <input type="text" class="form-control" id="equipment-name" name="name"
+                                        placeholder="Enter your name" autocomplete="off">
                                 </div>
                                 <div class="mb-3">
                                     <div class="row">
                                         <div class="col-4">
                                             <label for="group-number" class="col-form-label">Group Number:</label>
                                             <input type="text" class="form-control" id="group-number"
-                                                name="group-number" placeholder="Enter your group number">
+                                                name="group-number" placeholder="Enter your group number" autocomplete="off">
                                         </div>
                                         <div class="col-4">
                                             <label for="departments" class="col-form-label">Grade Level:</label>
                                             <select class="form-select" id="departments" name="departments">
                                                 <option value="">Select department</option>
                                                 <option value="Elementary">Elementary Department</option>
-                                                <option value="Junior High School">Junior High School Department</option>
+                                                <option value="Junior High School">Junior High School Department
+                                                </option>
                                                 <option value="Senior High">Senior High School Department</option>
                                                 <option value="College">College Department</option>
                                             </select>
@@ -102,7 +106,7 @@
                                         <div class="col-4">
                                             <label for="class-section" class="col-form-label">Class Section</label>
                                             <input type="text" class="form-control" id="class-section"
-                                                name="class-section" placeholder="Enter your section">
+                                                name="class-section" placeholder="Enter your section" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -111,18 +115,19 @@
                                         <div class="col-6">
                                             <label for="group-number" class="col-form-label">Mobile number:</label>
                                             <input type="number" class="form-control" id="group-number"
-                                                name="mobile-number" placeholder="Enter your mobile number">
+                                                name="mobile-number" placeholder="Enter your mobile number" autocomplete="off">
                                         </div>
                                         <div class="col-6">
                                             <label for="class-section" class="col-form-label">Email address:</label>
-                                            <input type="email" class="form-control" id="class-section"
-                                                name="email" placeholder="Enter your email address">
+                                            <input type="email" class="form-control" id="class-section" name="email"
+                                                placeholder="Enter your email address" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-3 col-6">
                                     <label for="date-borrowed" class="form-label">Date Borrowed:</label>
-                                    <input type="date" class="form-control" id="date-borrowed" name="date-borrowed" readonly>
+                                    <input type="date" class="form-control" id="date-borrowed" name="date-borrowed"
+                                        readonly>
                                 </div>
 
                                 <div class="mb-3">
@@ -169,7 +174,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                    <div class="col-6 mb-3">
+                                        <div class="col-6 mb-3">
                                             <label for="time" class="form-label">Time:</label>
                                             <input name="time" class="form-control" type="time" id="time"
                                                 placeholder="Time">
@@ -192,107 +197,149 @@
                                     </div>
                                 </div>
                                 <div class="row justify-content-center">
-                                    <div class="col-4 ">
-                                        <input type="text" name="apparatus1" class="mb-3 form-control" id="input1"
-                                            placeholder="Apparatus 1" autofocus>
-                                        <input type="text" name="apparatus2" class="mb-3 form-control" id="input1"
-                                            placeholder="Apparatus 2">
-                                        <input type="text" name="apparatus3" class="mb-3 form-control" id="input1"
-                                            placeholder="Apparatus 3">
-                                    </div>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-12 d-flex">
+                                                        <input type="text" name="apparatus1" class="m-1 form-control"
+                                                            id="input1" placeholder="" autofocus
+                                                            onkeydown="moveToNext(event, 'input2')" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-12 d-flex">
+                                                        <input type="text" name="apparatus2" class="m-1 form-control"
+                                                            id="input2" placeholder=""
+                                                            onkeydown="moveToNext(event, 'input3')" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-12 d-flex">
+                                                        <input type="text" name="apparatus3" class="m-1 form-control"
+                                                            id="input3" placeholder="" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12 mt-5 text-center justify-content-center d-flex">
-                                <button type="button" class=" btn btn-secondary" id="prev-step-1">Previous</button>
-                                <button type="submit" class="btn btn-success" id="confirm-button">Confirm</button>
-                            </div>
-                        </div>
                 </div>
-
-                </form>
+                <div class="row">
+                    <div class="col-12 mt-5 text-center justify-content-center d-flex">
+                        <button type="button" class=" btn btn-secondary" id="prev-step-1">Previous</button>
+                        <button type="submit" class="btn btn-success" id="confirm-button">Confirm</button>
+                    </div>
+                </div>
             </div>
 
-            <script>
-                var today = new Date();
+            </form>
+        </div>
 
-                var dd = String(today.getDate()).padStart(2, '0');
-                var mm = String(today.getMonth() + 1).padStart(2, '0');
-                var yyyy = today.getFullYear();
+        <script>
+            var today = new Date();
 
-                today = yyyy + '-' + mm + '-' + dd;
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var yyyy = today.getFullYear();
 
-                document.getElementById('date-borrowed').value = today;
+            today = yyyy + '-' + mm + '-' + dd;
+
+            document.getElementById('date-borrowed').value = today;
 
 
-                document.addEventListener("DOMContentLoaded", function () {
-                    const step1 = document.getElementById('step-1');
-                    const step2 = document.getElementById('step-2');
-                    const nextStep2Button = document.getElementById('next-step-2');
-                    const prevStep1Button = document.getElementById('prev-step-1');
-                    const confirmButton = document.getElementById('confirm-button');
+            document.addEventListener("DOMContentLoaded", function () {
+                const step1 = document.getElementById('step-1');
+                const step2 = document.getElementById('step-2');
+                const nextStep2Button = document.getElementById('next-step-2');
+                const prevStep1Button = document.getElementById('prev-step-1');
+                const confirmButton = document.getElementById('confirm-button');
+
+                confirmButton.style.display = 'none';
+                prevStep1Button.style.display = 'none';
+
+                nextStep2Button.addEventListener('click', function () {
+                    step1.style.display = 'none';
+                    step2.style.display = 'block';
+
+                    confirmButton.style.display = 'block';
+                    prevStep1Button.style.display = 'block';
+                });
+
+                prevStep1Button.addEventListener('click', function () {
+                    step2.style.display = 'none';
+                    step1.style.display = 'block';
 
                     confirmButton.style.display = 'none';
                     prevStep1Button.style.display = 'none';
-
-                    nextStep2Button.addEventListener('click', function () {
-                        step1.style.display = 'none';
-                        step2.style.display = 'block';
-
-                        confirmButton.style.display = 'block';
-                        prevStep1Button.style.display = 'block';
-                    });
-
-                    prevStep1Button.addEventListener('click', function () {
-                        step2.style.display = 'none';
-                        step1.style.display = 'block';
-
-                        confirmButton.style.display = 'none';
-                        prevStep1Button.style.display = 'none';
-                        prevStep2Button.style.display = 'none';
-                    });
+                    prevStep2Button.style.display = 'none';
                 });
+            });
 
 
-                document.getElementById("myForm").addEventListener("submit", function (event) {
-                    event.preventDefault(); 
+            document.getElementById("myForm").addEventListener("submit", function (event) {
+                event.preventDefault();
 
-                    var formData = new FormData(this);
+                var formData = new FormData(this);
 
-                    fetch("insert_borrowing.php", {
-                        method: "POST",
-                        body: formData
+                fetch("insert_borrowing.php", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: 'Your Borrowing transaction has been approved!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = "index.php";
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong!'
+                            });
+                        }
                     })
-                        .then(response => {
-                            if (response.ok) {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Success',
-                                    text: 'Your Borrowing transaction has been approved!'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        window.location.href = "index.php"; 
-                                    }
-                                });
-                            } else {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Oops...',
-                                    text: 'Something went wrong!'
-                                });
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
-                });
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
 
-            </script>
-            </script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-                crossorigin="anonymous"></script>
+
+            document.querySelectorAll('input').forEach(input => {
+                input.addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                    }
+                });
+            });
+
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById('input1').focus();
+            });
+
+            function moveToNext(event, nextInputId) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    document.getElementById(nextInputId).focus();
+                }
+            }  
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>
