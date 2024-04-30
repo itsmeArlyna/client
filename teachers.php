@@ -57,18 +57,13 @@
         </div>
         <div class="row mb-5 mt-5">
             <div class="col-12 borrow text-center">
-                <a href="id_scan.php">
-                    <h3 class="text-primary blinking">Tap to start borrowing process…</h3>
+                <a href="scheduling.php">
+                    <h3 class="text-primary blinking">Tap to start scheduling process…</h3>
                 </a>
             </div>
             <div class="col-12 return text-center">
                 <a href="id_scan_return.php">
                     <button class="btn btn-warning">RETURNING PROCESS</button>
-                </a>
-            </div>
-            <div class="col-12 mt-5 text-center">
-                <a href="registration.php">
-                    <button class="btn btn-primary">REGISTRATION PROCESS</button>
                 </a>
             </div>
         </div>
