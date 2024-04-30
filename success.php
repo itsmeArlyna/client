@@ -53,8 +53,8 @@
         <div class="row">
             <div class="col-12 text-center">
             <?php
-        if (isset ($_GET['user_name'])) {
-            $userName = $_GET['user_name'];
+        if (isset ($_GET['user_id_input'])) {
+            $userName = $_GET['user_id_input'];
        
             echo "<h2 class='mb-5'>Hello $userName!</h2>";
             } else {

@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['return']) && $_POST['r
     $db->close();
 
     // Redirect to original page with success message
-    header("Location: success.php?user_id_input=" . urlencode($userId) . "&return_success=1");
+    header("Location: success.php?user_id_input=" . urlencode($userName) . "&return_success=1");
     exit();
 } else {
     // Redirect to error page if accessed incorrectly
