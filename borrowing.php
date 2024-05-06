@@ -886,6 +886,21 @@
                     document.getElementById("fetchNameButton11").click();
                 }
             });
+            document.addEventListener('DOMContentLoaded', function() {
+    const idInputs = document.querySelectorAll('.idNumberInput');
+
+    idInputs.forEach(function(input) {
+        input.addEventListener('input', function() {
+            let inputValue = input.value;
+
+            inputValue = inputValue.replace(/\D/g, ''); // Keep only digits
+
+            inputValue = inputValue.slice(0, 10); // Only take first 10 characters
+
+            input.value = inputValue;
+        });
+    });
+});
 
 
 

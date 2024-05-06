@@ -81,10 +81,10 @@
                        <form action="register.php" method="post">
                        <label for="">Card ID Number</label>
                         <input type="number" name="id_number" class="form-control mb-3" placeholder="Scan your ID on the reader"
-                            autofocus>
+                            autofocus required>
 
                         <label for="">Name</label>
-                        <input type="text" name="name" class="form-control mb-3" placeholder="Enter your full name">
+                        <input type="text" name="name" class="form-control mb-3" placeholder="Enter your full name" required>
 
                         <div class="text-center">
                         <button class="btn btn-primary" type="submit">Register!</button>
